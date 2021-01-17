@@ -7,13 +7,14 @@ const forecast = (lat, lon, callback) => {
         const temperature = body.current.temperature;
         const feelslike = body.current.feelslike;
         const desc = body.current.weather_descriptions[0];
+        const humidity = body.current.humidity;
 
         if (error) {
             callback('Unable to connect to weather services!', undefined);
         } else if (body.error) {
             callback('Unable to find location. Try another search', undefined);
         } else {
-            callback(undefined, `${desc}. It is currently ${temperature} degrees out. It feels like ${feelslike}% degrees out.`);
+            callback(undefined, `${desc}. It is currently ${temperature} degrees out. It feels like ${feelslike}% degrees out. Humidity is ${humidity}`);
         };
     });
 }
